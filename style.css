@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+input[type='text'] {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.bird-image {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #dee2e6;
+}
+
+.audio-section {
+  width: 100%;
+  max-width: 500px;
+}
+
+.audio-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.audio-card h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+audio {
+  margin-top: 20px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  audio {
+    width: 100%;
+  }
+}
+
+@keyframes spinner-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 5px dotted blue;
+  animation: spinner-animation 2s linear infinite;
+}

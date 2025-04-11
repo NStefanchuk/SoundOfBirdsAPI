@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bird Search</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Bird Search</h1>
+    <form id="searchForm">
+      <input
+        type="text"
+        id="birdInput"
+        placeholder="Enter bird name..."
+        required
+      />
+      <button type="submit">Search</button>
+    </form>
+
+    <img
+      id="birdImage"
+      class="bird-image"
+      src=""
+      alt="Bird"
+      style="display: none"
+    />
+
+    <div class="audio-section" id="audioSection"></div>
+    <div class = "spinner"></div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
