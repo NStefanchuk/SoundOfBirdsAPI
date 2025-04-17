@@ -1,8 +1,12 @@
-import {pauseOtherAudio} from './helper.js'
+import { pauseOtherAudio } from './helper.js'
+import { setupAutocomplete } from './hint.js'
+
 const searchForm = document.getElementById('searchForm')
 const birdImage = document.getElementById('birdImage')
 const audioSection = document.getElementById('audioSection')
 const spinner = document.querySelector('.spinner')
+
+setupAutocomplete()
 
 searchForm.addEventListener('submit', async (e) => {
   e.preventDefault()
@@ -35,15 +39,16 @@ searchForm.addEventListener('submit', async (e) => {
 
   // Xeno-Canto API
   try {
-     spinner.style.display = 'block'
+    spinner.style.display = 'block'
     const soundRes = await fetch(
       `https://xeno-canto.org/api/2/recordings?query=${encodeURIComponent(
         query
       )}`
     )
-   
+
     const soundData = await soundRes.json()
     if (soundData.recordings.length > 0) {
+      audioSection.innerHTML = ''
       soundData.recordings.slice(0, 3).forEach((rec, index) => {
         const audio = document.createElement('audio')
         audio.controls = true
@@ -53,7 +58,7 @@ searchForm.addEventListener('submit', async (e) => {
           audioSection.appendChild(errorMsg)
         })
 
-        audio.addEventListener('play', () => pauseOtherAudio(index))
+        audio.addEventListener('play', () => pauseOtherAudio(audio))
         audio.src = rec.file.startsWith('http') ? rec.file : 'https:' + rec.file
         audio.preload = 'metadata'
         audio.setAttribute('controlsList', 'nodownload')
@@ -73,8 +78,7 @@ searchForm.addEventListener('submit', async (e) => {
   } catch (err) {
     console.error('Error fetching audio:', err)
     audioSection.innerHTML = `<p>Failed to fetch bird sounds. Try again later.</p>`
-  }
-  finally {
+  } finally {
     spinner.style.display = 'none'
   }
 })

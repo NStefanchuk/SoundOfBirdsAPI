@@ -1,14 +1,9 @@
-export const pauseOtherAudio = (selectedTrack) => {
-
+export const pauseOtherAudio = (playingAudio) => {
   const audioList = document.querySelectorAll('audio')
-  console.log(audioList)
-  audioList.forEach((track, index) => {
-    if (selectedTrack == index) {
-      track.play()
-      console.log(index)
-    } else {
+
+  audioList.forEach((track) => {
+    if (track !== playingAudio && !track.paused) {
       track.pause()
-      console.log(index);
     }
   })
 }

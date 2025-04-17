@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bird Search</title>
+    <title>Bird Sound Search</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
@@ -11,14 +12,15 @@
     />
   </head>
   <body>
-    <h1>Bird Search</h1>
-    <form id="searchForm">
+    <h1><a href="./" class="logo">Bird Sound Search</a></h1>
+    <form id="searchForm" autocomplete="off" class="search-form">
       <input
         type="text"
         id="birdInput"
         placeholder="Enter bird name..."
         required
       />
+      <div id="suggestions" class="suggestions-box"></div>
       <button type="submit">Search</button>
     </form>
 
@@ -31,7 +33,8 @@
     />
 
     <div class="audio-section" id="audioSection"></div>
-    <div class = "spinner"></div>
+    <div class="spinner"></div>
+
     <script type="module" src="script.js"></script>
   </body>
 </html>
