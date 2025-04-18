@@ -1,22 +1,21 @@
 import { popularBirds } from './birdsList.js'
+
 export function setupAutocomplete() {
   const input = document.getElementById('birdInput')
   const suggestionsBox = document.getElementById('suggestions')
 
   function showSuggestions(query = '') {
     suggestionsBox.innerHTML = ''
-  
+
     let matches
     if (query === '') {
-      matches = popularBirds
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 10)
+      matches = popularBirds.sort(() => Math.random() - 0.5).slice(0, 10)
     } else {
       matches = popularBirds
         .filter(bird => bird.toLowerCase().includes(query.toLowerCase()))
-        .slice(0, 5)
+        .slice(0, 10)
     }
-  
+
     matches.forEach(bird => {
       const div = document.createElement('div')
       div.textContent = bird
@@ -27,10 +26,9 @@ export function setupAutocomplete() {
       })
       suggestionsBox.appendChild(div)
     })
-  
+
     suggestionsBox.style.display = matches.length ? 'block' : 'none'
   }
-  
 
   input.addEventListener('focus', () => showSuggestions())
   input.addEventListener('input', () => showSuggestions(input.value))

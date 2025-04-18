@@ -55,12 +55,23 @@ button {
 .bird-image {
   width: 100%;
   max-width: 500px;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1rem;
-  background-color: #dee2e6;
+  background-color: #E0E5E8;
 }
+
+.unknown-bird {
+  /* width: 100%;
+  max-width: 500px; */
+  /* aspect-ratio: 16 / 9; */
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #E0E5E8;
+}
+
 
 .audio-section {
   width: 100%;
@@ -144,3 +155,4 @@ audio {
 .suggestions-box div:hover {
   background-color: #f1f1f1;
 }
+
