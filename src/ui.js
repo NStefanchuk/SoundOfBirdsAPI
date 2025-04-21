@@ -1,3 +1,5 @@
+import { pauseOtherAudio } from './helper.js'
+
 export function renderImage(url) {
   const img = document.getElementById('birdImage')
   img.src = url
@@ -23,6 +25,10 @@ export function renderAudioList(recordings) {
     audio.controls = true
     audio.preload = 'metadata'
     audio.src = rec.file.startsWith('http') ? rec.file : 'https:' + rec.file
+
+    audio.addEventListener('play', ()=>{
+      pauseOtherAudio(audio)
+    })
 
     const div = document.createElement('div')
     div.className = 'audio-card'

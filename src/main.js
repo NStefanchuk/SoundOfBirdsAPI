@@ -1,34 +1,49 @@
 import { fetchBirdImage, fetchBirdSounds } from './api.js'
-import { setupAutocomplete } from './hint.js'
+import { setupAutocomplete, showRegionHint } from './hint.js'
 import { renderImage, renderAudioList, showError } from './ui.js'
 
-setupAutocomplete()
+document.addEventListener('DOMContentLoaded', () => {
+  setupAutocomplete()
 
-const form = document.getElementById('searchForm')
-const spinner = document.getElementById('spinner')
+  document.getElementById('regionInput').addEventListener('input', (e) => {
+    showRegionHint(e.target.value)
+  })
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault() 
-  const query = document.getElementById('birdInput').value.trim()
-  if (!query) return
+  regionInput.addEventListener('focus', () => {
+    showRegionHint(''); // Показать рандомные, если фокус без ввода
+  });
 
-  spinner.style.display = 'block'
-  document.getElementById('birdImage').style.display = 'none'
-  document.getElementById('audioSection').innerHTML = ''
+  const form = document.getElementById('searchForm')
+  const spinner = document.getElementById('spinner')
 
-  try {
-    const imageUrl = await fetchBirdImage(query)
-    renderImage(imageUrl)
-  } catch {
-    renderImage('./public/unknownBird.png')
-  }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const query = document.getElementById('birdInput').value.trim()
+    const region = document.getElementById('regionInput').value.trim()
+    if (!query) return
+    
+    document.getElementById('regionSuggestions').style.display = 'none';
+    document.getElementById('suggestions').style.display = 'none';
+    
 
-  try {
-    const recordings = await fetchBirdSounds(query)
-    renderAudioList(recordings)
-  } catch {
-    showError('Failed to fetch bird sounds. Try again later.')
-  }
+    spinner.style.display = 'block'
+    document.getElementById('birdImage').style.display = 'none'
+    document.getElementById('audioSection').innerHTML = ''
 
-  spinner.style.display = 'none'
+    try {
+      const imageUrl = await fetchBirdImage(query)
+      renderImage(imageUrl)
+    } catch {
+      renderImage('./public/unknownBird.png')
+    }
+
+    try {
+      const recordings = await fetchBirdSounds(query, region)
+      renderAudioList(recordings)
+    } catch {
+      showError('Failed to fetch bird sounds. Try again later.')
+    }
+
+    spinner.style.display = 'none'
+  })
 })

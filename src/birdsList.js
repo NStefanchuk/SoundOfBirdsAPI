@@ -6,7 +6,7 @@ export const popularBirds = [
   'Cuckoo', 'Magpie', 'Jackdaw', 'Rook', 'Carrion Crow', 'Green Woodpecker',
   'Great Spotted Woodpecker', 'Kingfisher', 'Common Chiffchaff', 'Yellowhammer',
   'Redwing', 'Wheatear', 'Whinchat', 'Swallow', 'Swift', 'Buzzard', 'Kestrel',
-  'Hobby', 'Sparrowhawk', 'Osprey', 'Tawny Owl', 'Barn Owl', 'Little Owl',
+  'Hobby', 'Sparrowhawk', 'Osprey', 'Barn Owl', 'Little Owl',
   'Nuthatch', 'Treecreeper', 'Jay', 'Woodpigeon', 'Collared Dove', 'Crested Tit',
   'Coal Tit', 'Marsh Tit',
 

@@ -156,3 +156,17 @@ audio {
   background-color: #f1f1f1;
 }
 
+.input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }  
+}
