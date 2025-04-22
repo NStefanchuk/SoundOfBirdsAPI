@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
+    spinner.style.display = 'block'
     const query = document.getElementById('birdInput').value.trim()
     const region = document.getElementById('regionInput').value.trim()
 
