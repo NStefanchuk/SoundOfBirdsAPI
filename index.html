@@ -12,41 +12,44 @@
     />
   </head>
   <body>
-    <h1><a href="./" class="logo">Bird Sound Search</a></h1>
-    <form id="searchForm" autocomplete="off" class="search-form">
-      <div class="input-wrapper">
-        <input
-          type="text"
-          id="regionInput"
-          placeholder="Region (e.g. Russia, France)"
-        />
-        <div id="regionSuggestions" class="suggestions-box"></div>
-      </div>
+    <div class="container">
+      <h1 class="main-title">
+        <a href="./" class="logo">Bird Sound Search</a>
+      </h1>
+      <form id="searchForm" autocomplete="off" class="search-form">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="regionInput"
+            placeholder="Region (e.g. Russia, France)"
+          />
+          <div id="regionSuggestions" class="suggestions-box"></div>
+        </div>
 
-      <div class="input-wrapper">
-        <input
-          type="text"
-          id="birdInput"
-          placeholder="Enter bird name..."
-          required
-        />
-        <div id="suggestions" class="suggestions-box"></div>
-      </div>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="birdInput"
+            placeholder="Enter bird name..."
+            required
+          />
+          <div id="suggestions" class="suggestions-box"></div>
+        </div>
 
-      <button type="submit">Search</button>
-    </form>
+        <button type="submit">Search</button>
+      </form>
 
-    <img
-      id="birdImage"
-      class="bird-image"
-      src=""
-      alt="Bird"
-      style="display: none"
-    />
+      <img
+        id="birdImage"
+        class="bird-image"
+        src=""
+        alt="Bird"
+        style="display: none"
+      />
 
-    <div class="audio-section" id="audioSection"></div>
-    <div id="spinner" class="spinner" style="display: none"></div>
-
+      <div class="audio-section" id="audioSection"></div>
+      <div id="spinner" class="spinner" style="display: none"></div>
+    </div>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

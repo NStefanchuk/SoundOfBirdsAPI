@@ -1,90 +1,49 @@
-import { popularBirds } from './birdsList.js'
-import { regions } from './regionsList.js';
+export const showHint = (searchInput, hintBox, list) => {
+  const searchInputElement = document.getElementById(searchInput)
+  const hintBoxElement = document.getElementById(hintBox)
 
-export function setupAutocomplete() {
-  const input = document.getElementById('birdInput')
-  const suggestionsBox = document.getElementById('suggestions')
+  let matches = []
 
-  function showSuggestions(query = '') {
-    suggestionsBox.innerHTML = ''
+  searchInputElement.addEventListener('input', (e) => {
+    filterSearchParam(e.target.value)
+  })
 
-    let matches
-    if (query === '') {
-      matches = popularBirds.sort(() => Math.random() - 0.5).slice(0, 10)
+  const filterSearchParam = (query = '') => {
+    hintBoxElement.innerHTML = ''
+
+    if (!query) {
+      matches = list.sort(() => Math.random() - 0.5).slice(0, 10)
     } else {
-      matches = popularBirds
-        .filter(bird => bird.toLowerCase().includes(query.toLowerCase()))
+      matches = list
+        .filter((searchParam) =>
+          searchParam.toLowerCase().includes(query.toLowerCase())
+        )
         .slice(0, 10)
     }
 
-    matches.forEach(bird => {
-      const div = document.createElement('div')
-      div.textContent = bird
-      div.addEventListener('click', () => {
-        input.value = bird
-        suggestionsBox.innerHTML = ''
-        suggestionsBox.style.display = 'none'
-      })
-      suggestionsBox.appendChild(div)
+    matches.forEach((param) => {
+      const searchParam = document.createElement('div')
+      const searchParamText = document.createElement('span')
+      searchParam.className = 'suggestion-item'
+      searchParamText.textContent = param
+      searchParam.appendChild(searchParamText)
+      searchParam.onclick = () => {
+        searchInputElement.value = param
+        hintBoxElement.style.display = 'none'
+      }
+      hintBoxElement.appendChild(searchParam)
     })
 
-    suggestionsBox.style.display = matches.length ? 'block' : 'none'
+    hintBoxElement.style.display = matches.length ? 'block' : 'none'
   }
 
-  input.addEventListener('focus', () => showSuggestions())
-  input.addEventListener('input', () => showSuggestions(input.value))
+  searchInputElement.addEventListener('focus', () => {
+    filterSearchParam()
+  })
 
   document.addEventListener('click', (e) => {
-    if (!suggestionsBox.contains(e.target) && e.target !== input) {
-      suggestionsBox.innerHTML = ''
-      suggestionsBox.style.display = 'none'
+    if (!hintBoxElement.contains(e.target) && e.target !== searchInputElement) {
+      hintBoxElement.style.display = 'none'
     }
   })
 }
-
-export function showRegionHint(inputValue) {
-  const suggestionsBox = document.getElementById('regionSuggestions');
-  suggestionsBox.innerHTML = '';
-
-  let matches;
-
-  if (!inputValue.trim()) {
-    // Показ 10 случайных регионов, если поле пустое
-    matches = regions.sort(() => 0.5 - Math.random()).slice(0, 10);
-  } else {
-    matches = regions
-      .filter(region =>
-        region.toLowerCase().includes(inputValue.toLowerCase())
-      )
-      .slice(0, 7);
-  }
-
-  if (matches.length === 0) {
-    suggestionsBox.style.display = 'none';
-    return;
-  }
-
-  matches.forEach(region => {
-    const div = document.createElement('div');
-    div.className = 'suggestion-item';
-    div.textContent = region;
-    div.onclick = () => {
-      document.getElementById('regionInput').value = region;
-      suggestionsBox.style.display = 'none';
-    };
-    suggestionsBox.appendChild(div);
-  });
-
-  suggestionsBox.style.display = 'block';
-
-  // Закрытие списка регионов при клике вне
-document.addEventListener('click', (e) => {
-  const regionSuggestions = document.getElementById('regionSuggestions');
-  const regionInput = document.getElementById('regionInput');
-  if (!regionSuggestions.contains(e.target) && e.target !== regionInput) {
-    regionSuggestions.style.display = 'none';
-  }
-});
-}
-
-

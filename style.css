@@ -1,12 +1,51 @@
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #f8f9fa;
   color: #212529;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+}
+
+body {
+  background: linear-gradient(
+    120deg,
+    #dceef2,
+    #b3d9e5,
+    #89c3d8,
+    #5daecd,
+    #3a97bc,
+    #207ba2,
+    #0e5f88
+  );
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  background-color: white;
+  padding: 20px 35px;
+  border-radius: 25px;
+}
+
+.main-title {
+  width: 100%;
+  text-align: center;
 }
 
 .logo {
@@ -59,19 +98,18 @@ button {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1rem;
-  background-color: #E0E5E8;
+  background-color: #e0e5e8;
 }
 
 .unknown-bird {
   width: 100%;
-  max-width: 500px; 
+  max-width: 500px;
   aspect-ratio: 16 / 9;
   object-fit: contain;
   border-radius: 8px;
   margin-bottom: 1rem;
-  background-color: #E0E5E8;
+  background-color: #e0e5e8;
 }
-
 
 .audio-section {
   width: 100%;
@@ -118,10 +156,13 @@ audio {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 
 .search-form {
   position: relative;
@@ -168,5 +209,5 @@ audio {
     position: relative;
     display: flex;
     flex-direction: column;
-  }  
+  }
 }

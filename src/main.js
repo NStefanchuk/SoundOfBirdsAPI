@@ -1,17 +1,13 @@
 import { fetchBirdImage, fetchBirdSounds } from './api.js'
-import { setupAutocomplete, showRegionHint } from './hint.js'
+import { showHint } from './hint.js'
 import { renderImage, renderAudioList, showError } from './ui.js'
+import { popularBirds } from './birdsList.js'
+import { regions } from './regionsList.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  setupAutocomplete()
 
-  document.getElementById('regionInput').addEventListener('input', (e) => {
-    showRegionHint(e.target.value)
-  })
-
-  regionInput.addEventListener('focus', () => {
-    showRegionHint(''); // Показать рандомные, если фокус без ввода
-  });
+  showHint('birdInput', 'suggestions', popularBirds)
+  showHint('regionInput', 'regionSuggestions', regions)
 
   const form = document.getElementById('searchForm')
   const spinner = document.getElementById('spinner')
@@ -20,15 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault()
     const query = document.getElementById('birdInput').value.trim()
     const region = document.getElementById('regionInput').value.trim()
-    if (!query) return
-    
-    document.getElementById('regionSuggestions').style.display = 'none';
-    document.getElementById('suggestions').style.display = 'none';
-    
-
-    spinner.style.display = 'block'
-    document.getElementById('birdImage').style.display = 'none'
-    document.getElementById('audioSection').innerHTML = ''
 
     try {
       const imageUrl = await fetchBirdImage(query)

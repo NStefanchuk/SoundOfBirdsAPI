@@ -1,4 +1,3 @@
-// src/regionsList.js
 export const regions = [
   'Russia',
   'France',
